@@ -16,7 +16,9 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
+                            @can('Create-charge')
                             <a id="addRow" href="{{route('charge.create')}}" class="col-xl-2 col-md-12 col-sm-12 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
+                            @endcan
                             <table class="table zero-configuration">
                                 <thead>
                                     <tr>
@@ -26,7 +28,6 @@
                                         <th>{{__('dash.amount')}}</th>
                                         <th>{{__('dash.type')}}</th>
                                         <th>{{__('dash.add_date2')}}</th>
-                                        <th>{{__('dash.actions')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,9 +40,6 @@
                                             <td>{{$r->amount}}</td>
                                             <td>{{$r->type}}</td>
                                             <td>{{$r->created_at->format('Y-m-d')}}</td>
-                                            <td class="action-table">
-                                                <a href="{{route('charge.show',$r->id)}}"  class="btn bg-gradient-info   waves-effect waves-light"><i class="fa-solid fa-file-invoice-dollar"></i></i></a>
-                                            </td>
                                         </tr>
                                     @endforeach
                                     

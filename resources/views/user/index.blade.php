@@ -38,7 +38,10 @@
                                             <td>{{$u->state}}</td>
                                             <td>{{$u->created_at->format('Y-m-d')}}</td>
                                             <td class="action-table">
+                                                @can('Read-report')
                                                 <a href="{{route('users.show',$u->id)}}"  class="btn bg-gradient-info   waves-effect waves-light"><i class="fa-solid fa-file-invoice-dollar"></i></i></a>
+                                                @endcan
+                                                @can('Delete-user')
                                                 @if($u->status =='active')
                                                 {{-- Show block btn where status user active --}}
                                                         <button type="button" class="btn bg-gradient-danger waves-effect waves-light" onclick="performChangeStatus({{$u->id}})"><i class="fa fa-lock"></i></button>
@@ -47,6 +50,7 @@
                                                         <button type="button" class="btn bg-gradient-success waves-effect waves-light" onclick="performChangeStatus({{$u->id}})"><i class="fa fa-unlock"></i></button>
                                                 @endif
                                                 <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$u->id}})"><i class="fa fa-trash"></i></button>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

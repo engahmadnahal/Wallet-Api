@@ -16,7 +16,9 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
+                            @can('Create-role')
                             <a id="addRow" href="{{route('roles.create')}}" class="col-xl-2 col-md-12 col-sm-12 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
+                            @endcan
                             <table class="table zero-configuration">
                                 <thead>
                                     <tr>
@@ -36,9 +38,15 @@
                                             <td>{{$r->permissions->count()}}</td>
                                             <td>{{$r->created_at->format('Y-m-d')}}</td>
                                             <td class="action-table">
+                                                @can('Update-role')
                                                 <a href="{{route('roles.edit',$r->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
+                                                @endcan
+                                                @can('Show-role')
                                                 <a href="{{route('roles.show',$r->id)}}"  class="btn bg-gradient-info   waves-effect waves-light"><i class="fa-solid fa-gears"></i></i></a>
+                                                @endcan
+                                                @can('Delete-role')
                                                 <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$r->id}})"><i class="fa fa-trash"></i></button>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

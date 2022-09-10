@@ -16,7 +16,9 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
+                            @can('Create-subcategory')
                             <a id="addRow" href="{{route('sub_categories.create')}}" class="col-xl-2 col-md-12 col-sm-12 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
+                            @endcan
                             <table class="table zero-configuration">
                                 <thead>
                                     <tr>
@@ -42,16 +44,22 @@
                                             <td>{{$c->state}}</td>
                                             <td>{{$c->created_at->format('Y-m-d')}}</td>
                                             <td class="action-table">
+                                                @can('Show-subcategory')
                                                 <a href="{{route('sub_categories.show',$c->id)}}"  class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a>
+                                                @endcan
+                                                @can('Update-subcategory')
+                                                <a href="{{route('sub_categories.edit',$c->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
+                                                @endcan
+                                                @can('Delete-subcategory')
                                                 @if($c->status =='active')
                                                 {{-- Show block btn where status user active --}}
-                                                        <button type="button" class="btn bg-gradient-danger waves-effect waves-light" onclick="performChangeStatus({{$c->id}})"><i class="fa fa-lock"></i></button>
+                                                <button type="button" class="btn bg-gradient-danger waves-effect waves-light" onclick="performChangeStatus({{$c->id}})"><i class="fa fa-lock"></i></button>
                                                 @else
                                                 {{-- Show active btn where status user block --}}
-                                                        <button type="button" class="btn bg-gradient-success waves-effect waves-light" onclick="performChangeStatus({{$c->id}})"><i class="fa fa-unlock"></i></button>
+                                                <button type="button" class="btn bg-gradient-success waves-effect waves-light" onclick="performChangeStatus({{$c->id}})"><i class="fa fa-unlock"></i></button>
                                                 @endif
-                                                <a href="{{route('sub_categories.edit',$c->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
                                                 <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$c->id}})"><i class="fa fa-trash"></i></button>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

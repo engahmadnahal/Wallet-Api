@@ -33,6 +33,11 @@ class CategoryController extends Controller
     }
     public function subCategory(Request $request , SubCategory $subCategory)
     {
+        if($subCategory->status == 'block'){
+            return response()->json(
+                new MainResource([],Response::HTTP_BAD_REQUEST,ApiMsg::getMsg($request,'block'))
+                ,Response::HTTP_BAD_REQUEST);
+        }
         return response()->json(
             new MainResource(new SubCategoryResource($subCategory),Response::HTTP_OK,ApiMsg::getMsg($request,'success_get'))
             ,Response::HTTP_OK);

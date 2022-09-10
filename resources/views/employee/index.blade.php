@@ -16,7 +16,9 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
-                            <a id="addRow" href="{{route('pay_points.create')}}" class="col-xl-2 col-md-12 col-sm-12 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
+                            @can('Create-employee')
+                                <a id="addRow" href="{{route('pay_points.create')}}" class="col-xl-2 col-md-12 col-sm-12 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
+                            @endcan
                             <table class="table zero-configuration">
                                 <thead>
                                     <tr>
@@ -40,9 +42,15 @@
                                             <td>{{$e->PayPoint->name}}</td>
                                             <td>{{$e->created_at->format('Y-m-d')}}</td>
                                             <td class="action-table">
+                                                @can('Read-report')
                                                 <a href="{{route('employees.show',$e->id)}}"  class="btn bg-gradient-info   waves-effect waves-light"><i class="fa-solid fa-file-invoice-dollar"></i></i></a>
+                                                @endcan
+                                                @can('Update-employee')
                                                 <a href="{{route('employees.edit',$e->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
+                                                @endcan
+                                                @can('Delete-employee')
                                                 <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$e->id}})"><i class="fa fa-trash"></i></button>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

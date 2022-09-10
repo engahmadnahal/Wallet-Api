@@ -16,7 +16,9 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
+                            @can('Create-paypoint')
                             <a id="addRow" href="{{route('pay_points.create')}}" class="col-xl-2 col-md-12 col-sm-12 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
+                            @endcan
                             <table class="table zero-configuration">
                                 <thead>
                                     <tr>
@@ -38,9 +40,15 @@
                                             <td>{{$p->compony->name}}</td>
                                             <td>{{$p->created_at->format('Y-m-d')}}</td>
                                             <td class="action-table">
+                                                @can('Update-paypoint')
                                                 <a href="{{route('pay_points.edit',$p->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
+                                                @endcan
+                                                @can('Show-paypoint')
                                                 <a href="{{route('pay_points.show',$p->id)}}"  class="btn bg-gradient-info   waves-effect waves-light"><i class="fa-solid fa-file-invoice-dollar"></i></i></a>
+                                                @endcan
+                                                @can('Delete-paypoint')
                                                 <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$p->id}})"><i class="fa fa-trash"></i></button>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

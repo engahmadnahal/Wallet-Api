@@ -41,7 +41,8 @@ class ApiMsg {
         'success_payment' => 'تمت عملية الدفع بنجاح',
         'subs_expire' => 'لقد انتهى الاشتراك وتم تحويلك للخطة المجانية',
         'success_verified' => 'تم التفعيل بنجاج',
-        'balance_lessthan' => 'رصيدك لا يكفي'
+        'balance_lessthan' => 'رصيدك لا يكفي',
+        'block' => 'محظور'
 
         
 
@@ -90,7 +91,8 @@ class ApiMsg {
         'success_payment' => 'Payment completed successfully',
         'subs_expire' => 'Your Subscribtion is expred , transferred to the free plan ',
         'success_verified' => 'Verified is a successfully',
-        'balance_lessthan' => 'Your balance is not enough'
+        'balance_lessthan' => 'Your balance is not enough',
+        'block' => 'This is blocked'
 
 
     ];

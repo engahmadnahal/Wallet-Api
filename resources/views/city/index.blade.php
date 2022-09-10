@@ -16,7 +16,9 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
+                            @can('Create-city')
                             <a id="addRow" href="{{route('cities.create')}}" class="col-xl-2 col-md-12 col-sm-12 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
+                            @endcan
                             <table class="table zero-configuration">
                                 <thead>
                                     <tr>
@@ -36,7 +38,11 @@
                                             <td>{{$c->created_at->format('Y-m-d')}}</td>
                                             <td><span class="{{$c->active ? 'text-success' : 'text-danger'}}">{{$c->state}}</span></td>
                                             <td class="action-table">
+                                                @can('Update-city')
                                                 <a href="{{route('cities.edit',$c->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
+                                                @endcan
+
+                                                @can('Delete-city')
                                                 @if($c->active)
                                                 {{-- Show block btn where status user active --}}
                                                     <button type="button" class="btn bg-gradient-danger waves-effect waves-light" onclick="performChangeStatus({{$c->id}})"><i class="fa fa-lock"></i></button>
@@ -45,6 +51,7 @@
                                                     <button type="button" class="btn bg-gradient-success waves-effect waves-light" onclick="performChangeStatus({{$c->id}})"><i class="fa fa-unlock"></i></button>
                                                 @endif
                                                 <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$c->id}})"><i class="fa fa-trash"></i></button>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach
