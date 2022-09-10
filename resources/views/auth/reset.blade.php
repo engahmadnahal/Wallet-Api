@@ -58,7 +58,7 @@ function performResetPassword(){
             password_confirmation:document.getElementById('confirm_password').value,
             token : '{{$token}}'
         }).then(function(response){
-            window.location.href = "{{route('auth.login')}}";
+            window.location.href = "{{route('auth.choise_guard')}}";
             toastr.success(response.data.message,response.data.title, { "progressBar": true });
         }).catch(function(error){
             toastr.error(error.response.data.message,error.response.data.title, { "progressBar": true });

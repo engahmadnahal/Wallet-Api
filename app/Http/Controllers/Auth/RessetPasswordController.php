@@ -21,10 +21,10 @@ class RessetPasswordController extends Controller
         ]);
 
         if(!$validator->fails()){
-            $status = Password::sendResetLink(['email'=>$request->email]);
+            $status = Password::broker(session()->get('guard'))->sendResetLink(['email'=>$request->email]);
 
             return response()->json([
-                'title'=>__('msg.success'),
+                'title'=>$status === Password::RESET_LINK_SENT ? __('msg.success') :  __('msg.error'),
                 'message'=>__($status)
             ],$status === Password::RESET_LINK_SENT ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
         }else{
@@ -49,7 +49,7 @@ class RessetPasswordController extends Controller
         ]);
 
         if(!$validator->fails()){
-            $status = Password::reset(
+            $status = Password::broker(session()->get('guard'))->reset(
                 $request->only('email','password','password_confirmation','token'),
                 function($user, $password){
                     $user->password = Hash::make($password);
