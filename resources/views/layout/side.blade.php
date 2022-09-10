@@ -37,7 +37,7 @@
                 </li>
 
                
-                <li class="nav-item"><a href="#"><i class="fa-solid fa-user"></i><span class="menu-title" data-i18n="{{__('dash.pay_points')}}">{{__('dash.pay_points')}}</span></a>
+                <li class="nav-item"><a href="#"><i class="fa-solid fa-location-pin"></i><span class="menu-title" data-i18n="{{__('dash.pay_points')}}">{{__('dash.pay_points')}}</span></a>
                     <ul class="menu-content">
                         
                         <li class="{{ActiveRoute::isActive('pay_points.index')}}"><a  href="{{route('pay_points.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
@@ -110,21 +110,6 @@
             
 
 
-            <li class="navigation-header "><span>{{__('dash.reports')}}</span>
-                <li class=" nav-item"><a href="#"><i class="fa-solid fa-file-invoice-dollar"></i><span class="menu-title" data-i18n="{{__('dash.reports')}}">{{__('dash.reports')}}</span></a>
-                    <ul class="menu-content">
-                        <li class="{{ActiveRoute::isActive('report.paypoint')}}"><a  href="{{route('report.paypoint')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.reports_pay_points')}}">{{__('dash.reports_pay_points')}}</span></a>
-                        </li>
-    
-                        <li class="{{ActiveRoute::isActive('report.user')}}"><a  href="{{route('report.user')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.reports_user')}}">{{__('dash.reports_user')}}</span></a>
-                        </li>
-
-                        <li class="{{ActiveRoute::isActive('report.subcategory')}}"><a  href="{{route('report.subcategory')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.reports_subcategory')}}">{{__('dash.reports_subcategory')}}</span></a>
-                        </li>
-                        
-                        </li>
-                    </ul>
-                </li>
 
 
             <li class="navigation-header "><span>{{__('dash.settings')}}</span>

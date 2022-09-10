@@ -34,27 +34,25 @@
             </div>
         </div>
         <!--/ Invoice Company Details -->
-
         <!-- Invoice Recipient Details -->
         <div id="invoice-customer-details" class="row pt-2">
             <div class="col-sm-6 col-12 text-left">
                 
             </div>
             <div class="col-sm-6 col-12 text-right">
-                <h5>Employee.</h5>
+                <h5>Pay Point.</h5>
                 <div class="company-info my-2">
-                    <p>{{$employee->name}}</p>
-                    <p>{{$employee->national_id}}</p>
-                    <p>{{$employee->PayPoint->name}}</p>
+                    <p>{{$paypoint->name}}</p>
+                    <p>{{$paypoint->compony->name}}</p>
                 </div>
                 <div class="company-contact">
                     <p>
                         <i class="feather icon-mail"></i>
-                        {{$employee->email}}
+                        {{$paypoint->email}}
                     </p>
                     <p>
                         <i class="feather icon-phone"></i>
-                        {{$employee->mobile}}
+                        {{$paypoint->mobile}}
                     </p>
                 </div>
             </div>
@@ -68,22 +66,26 @@
                     <table class="table table-borderless">
                         <thead>
                             <tr>
+                                <th>{{__('dash.employees')}}</th>
                                 <th>{{__('dash.name_user')}}</th>
-                                <th>{{__('dash.amount')}}</th>
                                 <th>{{__('dash.type')}}</th>
+                                <th>{{__('dash.amount')}}</th>
                                 <th>{{__('dash.add_date2')}}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($employee->senderWalletUsers as $e)
-                                
-                            @endforeach
-                            <tr>
-                                <td>{{$e->user->name}}</td>
-                                <td>{{$e->amount}} USD</td>
-                                <td>{{$e->type}}</td>
-                                <td>{{$e->created_at->format('Y-m-d')}}</td>
-                            </tr>
+                            @foreach ($employee as $e)
+                                    @foreach ($e->senderWalletUsers as $s)
+                                        <tr>
+                                            <td>{{$e->name}}</td>
+                                            <td>{{$s->user->name}}</td>
+                                                <td>{{$s->type}}</td>
+                                                <td>{{$s->amount}}</td>
+                                                <td>{{$s->created_at->format('Y-m-d')}}</td>
+                                        </tr>
+                                    @endforeach
+                                    
+                                @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -97,7 +99,7 @@
                             <tbody>
                                 <tr>
                                     <th>TOTAL</th>
-                                    <td>{{$employee->total}} USD</td>
+                                    <td>{{$paypoint->total}} USD</td>
                                 </tr>
                             </tbody>
                         </table>

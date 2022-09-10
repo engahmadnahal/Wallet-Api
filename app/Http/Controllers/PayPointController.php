@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\SendDataPayPointEmail;
 use App\Models\Compony;
+use App\Models\Employee;
 use App\Models\PayPoint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -100,9 +101,25 @@ class PayPointController extends Controller
      */
     public function show(PayPoint $payPoint)
     {
-        //
-        return view('paypoint.show',[
+        $total = 0;
+        $clients = 0;
+        $total_charge = 0;
+        $employee = Employee::where('pay_point_id',$payPoint->id)->get();
+        foreach($employee as $e){
+            foreach($e->senderWalletUsers as $s){
+                $total += $s->amount;
+                $clients++;
+                $total_charge++;
+            }
+        }
+        $payPoint->setAttribute('total',$total);
+        $payPoint->setAttribute('empCount',$employee->count());
+        $payPoint->setAttribute('clients',$clients);
+        $payPoint->setAttribute('totalCharge',$total_charge);
+
+        return view('paypoint.details',[
             'payPoint' => $payPoint,
+            'employee' => $employee
         ]);
     }
 
@@ -195,5 +212,20 @@ class PayPointController extends Controller
             'title' => $isSave ? __('msg.success') : __('msg.error'),
             'message' =>$isSave ? __('msg.success_action') : __('msg.error_action')
         ],$isSave ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+    }
+
+    public function showReport(PayPoint $payPoint){
+        $total = 0;
+        $employee = Employee::where('pay_point_id',$payPoint->id)->get();
+        foreach($employee as $e){
+            foreach($e->senderWalletUsers as $s){
+                $total += $s->amount;
+            }
+        }
+        $payPoint->setAttribute('total',$total);
+        return view('paypoint.report',[
+            'paypoint' => $payPoint,
+            'employee' => $employee
+        ]);
     }
 }

@@ -2,21 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
-use App\Models\Children;
-use App\Models\Classe;
-use App\Models\Father;
-use App\Models\Game;
-use App\Models\History;
-use App\Models\Level;
-use App\Models\Plan;
-use App\Models\Semester;
-use App\Models\Subscription;
-use App\Models\Teacher;
-use Illuminate\Auth\Events\Validated;
+use App\Models\Category;
+use App\Models\City;
+use App\Models\Employee;
+use App\Models\PayPoint;
+use App\Models\SubCategory;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends Controller
@@ -28,12 +21,62 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
-        
+        if(Auth::guard('point')->check()){
+            return $this->getDataPayPoint();
+        }elseif(Auth::guard('employee')->check()){
+            return $this->getDataEmployee();
+        }elseif(Auth::guard('compony')->check()){
+            return $this->getDataCompony();
+        }
         return view('index');
+
+
     }
 
-    
+
+    public function getDataCompony(){
+
+        return view('index',[
+            'compony' => auth()->user(),
+            'pays' => PayPoint::all(),
+            'subCategory' => SubCategory::all(),
+            'category' => Category::all(),
+            'employee' => Employee::all(),
+            'users' => User::all(),
+            'city' => City::all()
+        ]);
+    }
+
+
+
+    public function getDataEmployee(){
+        return view('index',[
+            'employee' => auth()->user()
+        ]);
+    }
+
+    public function getDataPayPoint(){
+        $payPoint = auth()->user();
+        $total = 0;
+        $clients = 0;
+        $total_charge = 0;
+        $employee = Employee::where('pay_point_id',$payPoint->id)->get();
+        foreach($employee as $e){
+            foreach($e->senderWalletUsers as $s){
+                $total += $s->amount;
+                $clients++;
+                $total_charge++;
+            }
+        }
+        $payPoint->setAttribute('total',$total);
+        $payPoint->setAttribute('empCount',$employee->count());
+        $payPoint->setAttribute('clients',$clients);
+        $payPoint->setAttribute('totalCharge',$total_charge);
+        return view('index',[
+            'payPoint' => $payPoint,
+            'employee' => $employee
+        ]);
+    }
 
     public function setLocal(Request $request){
 

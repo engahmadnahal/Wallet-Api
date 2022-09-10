@@ -355,5 +355,9 @@ return [
     'reports_subcategory' => 'تقارير الجهات',
     'pay_to_user' => 'دفع لمستحدم',
     'pay_to_subcategory' => 'دفع لمؤسسة',
-    'charge_account' => 'شحن الحساب'
+    'charge_account' => 'شحن الحساب',
+    'payed' => 'الدفعات',
+    'total_mony' => 'المبلغ الكلي للنقطة',
+    'client' => 'عميل',
+    'total_charge' => 'العدد الكلي للشحنات'
 ];

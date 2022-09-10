@@ -1,12 +1,3 @@
-@extends('layout.master')
-
-@section('title',__('dash.show_charge'))
-@section('title_page',__('dash.show_charge'))
-
-@section('content')
-
-
-
 <section id="basic-datatable">
     <div class="row">
         <div class="col-12">
@@ -44,9 +35,7 @@
                             </tbody></table>
                             
                         </div>
-                        <div class="col-12">
-                            <a href="{{route('employees.report',$employee->id)}}" class="btn btn-primary mr-1 waves-effect waves-light"><i class="feather icon-edit-1"></i> {{__('dash.reports')}}</a>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -59,7 +48,7 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
-                          
+                          <h2>{{__('dash.charge')}}</h2>
                             <table class="table zero-configuration">
                                 <thead>
                                     <tr>
@@ -89,47 +78,3 @@
         </div>
     </div>
 </section>
-@endsection
-
-@section('scripts')
-<script>
- 
-//  document.getElementById('employee_id').onchange = function(){
-//     getDataEmployee()
-//  };
-
- function getDataEmployee(){
-    let employee_id = document.getElementById('employee_id').value;
-    axios.get('/charge/employees/'+employee_id).then(function(response){
-
-        let htmlData = ``;
-
-        for(let i = 0 ; i < response.data.length;i++){
-
-            htmlData += `
-
-                <tr>
-                    <td>${++i}</td>
-                    <td>${response.data[i].user.name}</td>
-                    <td>${response.data[i].description}</td>
-                    <td>${response.data[i].amount}</td>
-                    <td>${response.data[i].type}</td>
-                    <td>${response.data[i].updated_at}</td>
-                    <td class="action-table">
-                        <a href="/charge/report/${response.data[i].id}"  class="btn bg-gradient-info   waves-effect waves-light"><i class="fa-solid fa-file-invoice-dollar"></i></i></a>
-                    </td>
-                </tr>
-
-`;
-
-        }
-        
-        document.getElementById('data').innerHTML = htmlData;
-        console.log(response.data);
-    }).catch(function(error){});
- }
-    function performDelete(el,id){
-        performDeleteWithTostar('/roles/'+id,{"_method" : 'DELETE'},el,'tr');
-    }
-</script>
-@endsection

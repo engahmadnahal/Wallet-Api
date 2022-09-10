@@ -95,7 +95,7 @@ class SubCategoryController extends Controller
     public function show(SubCategory $subCategory)
     {
         //
-        return view('subcategory.show',[
+        return view('subcategory.details',[
             'subCategory' => $subCategory
         ]);
     }
@@ -196,5 +196,18 @@ class SubCategoryController extends Controller
             'title' => $isSave ? __('msg.success') : __('msg.error'),
             'message' =>$isSave ? __('msg.success_action') : __('msg.error_action')
         ],$isSave ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+    }
+
+    public function showReport(SubCategory $subCategory){
+        $total = 0;
+
+        foreach($subCategory->walletSubCategory as $w){
+            $total += $w->balance;
+
+        }
+        $subCategory->setAttribute('total',$total);
+        return view('subcategory.report',[
+            'subCategory' => $subCategory
+        ]);
     }
 }

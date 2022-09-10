@@ -66,7 +66,7 @@ Route::middleware('Local')->group(function(){
         Route::post('/notification/read',[HomeController::class , 'readNotification'])->name('read_notification');
         
         // ----- PayPoints  Route ---------
-
+        Route::get('pay_points/reports/{pay_point}',[PayPointController::class , 'showReport'])->name('pay_points.report');
         Route::resource('pay_points',PayPointController::class);
 
         // ----- Users  Route ---------
@@ -92,6 +92,7 @@ Route::middleware('Local')->group(function(){
 
         // ----- Sub Category  Route ---------
         Route::post('sub_categories/status/{sub_category}',[SubCategoryController::class , 'changeStatus']);
+        Route::get('sub_categories/reports/{sub_category}',[SubCategoryController::class , 'showReport'])->name('sub_categories.report');
         Route::resource('sub_categories',SubCategoryController::class);
 
         // ----- Charge Mony  Route ---------

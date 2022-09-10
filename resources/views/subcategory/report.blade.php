@@ -41,21 +41,18 @@
                 
             </div>
             <div class="col-sm-6 col-12 text-right">
-                <h5>Employee.</h5>
+                <h5>Institutions .</h5>
                 <div class="company-info my-2">
-                    <p>{{$employee->name}}</p>
-                    <p>{{$employee->national_id}}</p>
-                    <p>{{$employee->PayPoint->name}}</p>
+                    <p>{{$subCategory->name}}</p>
+                    <p>{{$subCategory->city->name}}</p>
+                    <p>{{$subCategory->category->name}}</p>
                 </div>
                 <div class="company-contact">
                     <p>
                         <i class="feather icon-mail"></i>
-                        {{$employee->email}}
+                        {{$subCategory->state}}
                     </p>
-                    <p>
-                        <i class="feather icon-phone"></i>
-                        {{$employee->mobile}}
-                    </p>
+                  
                 </div>
             </div>
         </div>
@@ -75,14 +72,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($employee->senderWalletUsers as $e)
+                            @foreach ($subCategory->walletSubCategory as $e)
                                 
                             @endforeach
                             <tr>
                                 <td>{{$e->user->name}}</td>
-                                <td>{{$e->amount}} USD</td>
-                                <td>{{$e->type}}</td>
-                                <td>{{$e->created_at->format('Y-m-d')}}</td>
+                                    <td>Pay</td>
+                                    <td>{{$e->balance}}</td>
+                                    <td>{{$e->created_at->format('Y-m-d')}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -97,7 +94,7 @@
                             <tbody>
                                 <tr>
                                     <th>TOTAL</th>
-                                    <td>{{$employee->total}} USD</td>
+                                    <td>{{$subCategory->total}} USD</td>
                                 </tr>
                             </tbody>
                         </table>

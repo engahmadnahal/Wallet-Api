@@ -1,7 +1,7 @@
 @extends('layout.master')
 
-@section('title',__('dash.show_charge'))
-@section('title_page',__('dash.show_charge'))
+@section('title',__('dash.reports'))
+@section('title_page',__('dash.reports'))
 
 @section('content')
 
@@ -15,15 +15,18 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
+                        <div class="users-view-image mb-1" style=" width: 150px; height: 120px; ">
+                            <img src="{{Storage::url($subCategory->image)}}" class="users-avatar-shadow w-100 h-100 rounded mb-2 pr-2 ml-1" alt="avatar" >
+                        </div>
                         <div class="col-12 col-sm-9 col-md-6 col-lg-5">
                             <table class='customTable'>
                                 <tbody><tr>
                                     <td class="font-weight-bold">{{__('dash.name')}}</td>
-                                    <td>{{$employee->name}}</td>
+                                    <td>{{$subCategory->name}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="font-weight-bold">{{__('dash.mobile')}}</td>
-                                    <td>{{$employee->mobile}}</td>
+                                    <td class="font-weight-bold">{{__('dash.category')}}</td>
+                                    <td>{{$subCategory->category->name}}</td>
                                 </tr>
                                
                             </tbody></table>
@@ -32,20 +35,20 @@
                             <table class="customTable">
                                 
                                 <tbody><tr>
-                                    <td class="font-weight-bold">{{__('dash.email')}}</td>
-                                    <td>{{$employee->email}}</td>
+                                    <td class="font-weight-bold">{{__('dash.city')}}</td>
+                                    <td>{{$subCategory->city->name}}</td>
                                 </tr>
 
                                 <tr>
-                                    <td class="font-weight-bold">{{__('dash.national_id')}}</td>
-                                    <td>{{$employee->national_id}}</td>
+                                    <td class="font-weight-bold">{{__('dash.state')}}</td>
+                                    <td>{{$subCategory->state}}</td>
                                 </tr>
                                
                             </tbody></table>
                             
                         </div>
                         <div class="col-12">
-                            <a href="{{route('employees.report',$employee->id)}}" class="btn btn-primary mr-1 waves-effect waves-light"><i class="feather icon-edit-1"></i> {{__('dash.reports')}}</a>
+                            <a href="{{route('sub_categories.report',$subCategory->id)}}" class="btn btn-primary mr-1 waves-effect waves-light"><i class="feather icon-edit-1"></i> {{__('dash.reports')}}</a>
                         </div>
                     </div>
                 </div>
@@ -59,7 +62,7 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
-                          
+                          <h2>{{__('dash.payed')}}</h2>
                             <table class="table zero-configuration">
                                 <thead>
                                     <tr>
@@ -70,11 +73,11 @@
                                     </tr>
                                 </thead>
                                 <tbody id='data'>
-                                    @foreach ($employee->senderWalletUsers as $e)
+                                    @foreach ($subCategory->walletSubCategory as $e)
                                     <tr>
                                         <td>{{$e->user->name}}</td>
-                                            <td>{{$e->type}}</td>
-                                            <td>{{$e->amount}}</td>
+                                            <td>Pay</td>
+                                            <td>{{$e->balance}}</td>
                                             <td>{{$e->created_at->format('Y-m-d')}}</td>
                                     </tr>
                                 @endforeach

@@ -168,4 +168,8 @@
     padding-left: 31px;
 
 }
+.avatar-content i {
+    color: #62848b;
+    font-size: 20px;
+}
     </style>
