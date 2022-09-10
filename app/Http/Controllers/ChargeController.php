@@ -17,6 +17,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ChargeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(HistoryWallet::class,'charge');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -38,7 +43,6 @@ class ChargeController extends Controller
      */
     public function create()
     {
-        //
         return view('charge.create');
     }
 
@@ -108,43 +112,7 @@ class ChargeController extends Controller
         
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
 
-        return view('charge.show');
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-        return view('charge.edit');
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
 
     public function userInfo(Request $request){
@@ -201,8 +169,6 @@ class ChargeController extends Controller
             ],Response::HTTP_BAD_REQUEST);
         }
     }
-
-
 
 
     

@@ -16,50 +16,47 @@ class PermissionSeeder extends Seeder
     public function run()
     {
         
-        // Permission::create(['guard_name'=>'compony','name' => 'Create-city']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Update-city']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Delete-city']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Show-city']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Read-city']);
+        Permission::create(['guard_name'=>'compony','name' => 'Create-city']);
+        Permission::create(['guard_name'=>'compony','name' => 'Update-city']);
+        Permission::create(['guard_name'=>'compony','name' => 'Delete-city']);
+        Permission::create(['guard_name'=>'compony','name' => 'Show-city']);
+        Permission::create(['guard_name'=>'compony','name' => 'Read-city']);
 
 
 
 
-        // Permission::create(['guard_name'=>'compony','name' => 'Create-role']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Update-role']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Delete-role']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Show-role']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Read-role']);
+        Permission::create(['guard_name'=>'compony','name' => 'Create-role']);
+        Permission::create(['guard_name'=>'compony','name' => 'Update-role']);
+        Permission::create(['guard_name'=>'compony','name' => 'Delete-role']);
+        Permission::create(['guard_name'=>'compony','name' => 'Show-role']);
+        Permission::create(['guard_name'=>'compony','name' => 'Read-role']);
 
-        // Permission::create(['guard_name'=>'compony','name' => 'Create-report']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Update-report']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Delete-report']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Show-report']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Read-report']);
+        Permission::create(['guard_name'=>'compony','name' => 'Create-report']);
+        
+        Permission::create(['guard_name'=>'compony','name' => 'Show-report']);
+        
 
-        // Permission::create(['guard_name'=>'compony','name' => 'Create-user']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Update-user']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Delete-user']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Show-user']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Read-user']);
+        Permission::create(['guard_name'=>'compony','name' => 'Delete-user']);
+        Permission::create(['guard_name'=>'compony','name' => 'Show-user']);
+        Permission::create(['guard_name'=>'compony','name' => 'Read-user']);
 
-        // Permission::create(['guard_name'=>'compony','name' => 'Create-category']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Update-category']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Delete-category']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Show-category']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Read-category']);
+        Permission::create(['guard_name'=>'compony','name' => 'Create-category']);
+        Permission::create(['guard_name'=>'compony','name' => 'Update-category']);
+        Permission::create(['guard_name'=>'compony','name' => 'Delete-category']);
+        Permission::create(['guard_name'=>'compony','name' => 'Show-category']);
+        Permission::create(['guard_name'=>'compony','name' => 'Read-category']);
 
-        // Permission::create(['guard_name'=>'compony','name' => 'Create-subcategory']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Update-subcategory']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Delete-subcategory']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Show-subcategory']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Read-subcategory']);
+        Permission::create(['guard_name'=>'compony','name' => 'Create-subcategory']);
+        Permission::create(['guard_name'=>'compony','name' => 'Update-subcategory']);
+        Permission::create(['guard_name'=>'compony','name' => 'Delete-subcategory']);
+        Permission::create(['guard_name'=>'compony','name' => 'Show-subcategory']);
+        Permission::create(['guard_name'=>'compony','name' => 'Read-subcategory']);
 
-        // Permission::create(['guard_name'=>'compony','name' => 'Create-paypoint']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Update-paypoint']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Delete-paypoint']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Show-paypoint']);
-        // Permission::create(['guard_name'=>'compony','name' => 'Read-paypoint']);
+        Permission::create(['guard_name'=>'compony','name' => 'Create-paypoint']);
+        Permission::create(['guard_name'=>'compony','name' => 'Update-paypoint']);
+        Permission::create(['guard_name'=>'compony','name' => 'Delete-paypoint']);
+        Permission::create(['guard_name'=>'compony','name' => 'Show-paypoint']);
+        Permission::create(['guard_name'=>'compony','name' => 'Read-paypoint']);
 
 
 
@@ -95,6 +92,13 @@ class PermissionSeeder extends Seeder
         Permission::create(['guard_name'=>'employee','name' => 'Delete-charge']);
         Permission::create(['guard_name'=>'employee','name' => 'Show-charge']);
         Permission::create(['guard_name'=>'employee','name' => 'Read-charge']);
+
+        // User
+
+        Permission::create(['guard_name'=>'users','name' => 'History-wallet']);
+        Permission::create(['guard_name'=>'users','name' => 'Send-mony']);
+        Permission::create(['guard_name'=>'users','name' => 'Read-subcategory']);
+        Permission::create(['guard_name'=>'users','name' => 'Read-category']);
 
        
 

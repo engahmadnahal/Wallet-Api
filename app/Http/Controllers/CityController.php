@@ -8,6 +8,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CityController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(City::class);
+    }
     /**
      * Display a listing of the resource.
      *

@@ -13,6 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Str;
 class EmployeeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Employee::class);
+    }
     /**
      * Display a listing of the resource.
      *

@@ -14,6 +14,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Str;
 class PayPointController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(PayPoint::class);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +27,7 @@ class PayPointController extends Controller
     {
         //
 
-        $pays = PayPoint::all();
+        $pays = PayPoint::where('compony_id',auth()->user()->id)->get();
         return view('paypoint.index',[
             'pays' => $pays
         ]);
@@ -227,5 +231,27 @@ class PayPointController extends Controller
             'paypoint' => $payPoint,
             'employee' => $employee
         ]);
+    }
+
+    public function resourceAbilityMap(){
+        return [
+            'show' => 'view',
+            'create' => 'create',
+            'store' => 'create',
+            'edit' => 'update',
+            'update' => 'update',
+            'destroy' => 'delete',
+            'showReport'=>'showReport'
+        ];
+    }
+
+    /**
+     * Get the list of resource methods which do not have model parameters.
+     *
+     * @return array
+     */
+    protected function resourceMethodsWithoutModels()
+    {
+        return ['index', 'create', 'store'];
     }
 }

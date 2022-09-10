@@ -12,6 +12,11 @@ use Symfony\Component\HttpFoundation\Response;
 class SubCategoryController extends Controller
 {
     use CustomTrait;
+
+    public function __construct()
+    {
+        $this->authorizeResource(SubCategory::class);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +25,9 @@ class SubCategoryController extends Controller
     public function index()
     {
         //
-        $subCategory = SubCategory::all();
+        $subCategory = SubCategory::whereHas('category',function($q){
+            $q->where('compony_id',auth()->user()->id);
+        })->get();
         return view('subcategory.index',[
             'subCategory' => $subCategory
         ]);
@@ -35,7 +42,7 @@ class SubCategoryController extends Controller
     {
         //
         $city = City::where('active',true)->get();
-        $category = Category::where('status','active')->get();
+        $category = Category::where('status','active')->where('compony_id',auth()->user()->id)->get();
         return view('subcategory.create',[
             'city' => $city,
             'category' => $category

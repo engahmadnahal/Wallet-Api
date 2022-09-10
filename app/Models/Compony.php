@@ -20,4 +20,8 @@ class Compony extends Authenticatable
     public function payPoints(){
         return $this->hasMany(PayPoint::class);
     }
+
+    public function category(){
+        return $this->hasMany(Category::class);
+    }
 }

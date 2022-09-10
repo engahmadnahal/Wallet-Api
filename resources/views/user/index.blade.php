@@ -38,6 +38,9 @@
                                             <td>{{$u->state}}</td>
                                             <td>{{$u->created_at->format('Y-m-d')}}</td>
                                             <td class="action-table">
+                                                @can('Create-role')
+                                                <a href="{{route('users.permissions',$u->id)}}"  class="btn bg-gradient-info   waves-effect waves-light"><i class="fa-solid fa-gears"></i></i></a>
+                                                @endcan
                                                 @can('Read-report')
                                                 <a href="{{route('users.show',$u->id)}}"  class="btn bg-gradient-info   waves-effect waves-light"><i class="fa-solid fa-file-invoice-dollar"></i></i></a>
                                                 @endcan

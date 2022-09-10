@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RolePermissionController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *

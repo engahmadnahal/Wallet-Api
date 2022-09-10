@@ -72,6 +72,8 @@ Route::middleware('Local')->group(function(){
         // ----- Users  Route ---------
         Route::post('users/status/{user}',[UserController::class , 'changeStatus']);
         Route::get('users/reports/{user}',[UserController::class , 'showReport'])->name('users.report');
+        Route::get('/users/{user}/permission/edit',[UserController::class , 'editUserPermission'])->name('users.permissions');
+        Route::put('/users/{user}/permission/update',[UserController::class , 'updateUserPermission'])->name('users.update_permissions');
         Route::resource('users',UserController::class);
 
         // ----- Employees  Route ---------

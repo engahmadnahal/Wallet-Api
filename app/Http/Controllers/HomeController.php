@@ -36,12 +36,15 @@ class HomeController extends Controller
 
     public function getDataCompony(){
 
+        $employee = Employee::whereHas('PayPoint',function($q){
+            $q->where('compony_id',auth()->user()->id);
+        })->get();
         return view('index',[
             'compony' => auth()->user(),
-            'pays' => PayPoint::all(),
+            'pays' => PayPoint::where('compony_id',auth()->user()->id)->get(),
             'subCategory' => SubCategory::all(),
             'category' => Category::all(),
-            'employee' => Employee::all(),
+            'employee' => $employee,
             'users' => User::all(),
             'city' => City::all()
         ]);

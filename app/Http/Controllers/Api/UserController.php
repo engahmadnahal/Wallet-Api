@@ -17,11 +17,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
-    //
-    
-
 
     public function sendMonyToUser(Request $request){
+
+        if(!auth()->user()->can('Send-mony')){
+            return response()->json([
+                'status' => false,
+                'message' => 'unauthorized'
+            ],Response::HTTP_FORBIDDEN);
+        }
 
         $validator = Validator($request->all(),[
             'mobile' => 'required|string|exists:users,mobile',
@@ -76,6 +80,12 @@ class UserController extends Controller
 
     public function sendMonyToCategory(Request $request, SubCategory $subCategory){
 
+        if(!auth()->user()->can('Send-mony')){
+            return response()->json([
+                'status' => false,
+                'message' => 'unauthorized'
+            ],Response::HTTP_FORBIDDEN);
+        }
         $validator = Validator($request->all(),[
             'amount' => 'required|numeric',
             'description' => 'nullable|string',
@@ -124,14 +134,18 @@ class UserController extends Controller
     }
 
     public function historyPay(Request $request){
+        if(!auth()->user()->can('History-wallet')){
+            return response()->json([
+                'status' => false,
+                'message' => 'unauthorized'
+            ],Response::HTTP_FORBIDDEN);
+        }
         $user = User::where('id',auth()->user()->id)->with(['senderWalletUsers','reseverWalletUsers','walletSubCategores'])->first();
         return response()->json(
             new MainResource(new HistoryWalletResource($user),Response::HTTP_OK,ApiMsg::getMsg($request,'success_get'))
         ,Response::HTTP_OK);
     }
 
-    public function historyCharge(Request $request){
-        
-    }
+
     
 }

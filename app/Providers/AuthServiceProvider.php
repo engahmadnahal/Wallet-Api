@@ -5,6 +5,8 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 
 use App\Models\Classe;
+use App\Models\HistoryWallet;
+use App\Policies\ChargePolicy;
 use App\Policies\ClassePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -18,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         // 'App\Models\Classe' => 'App\Policies\ClassePolicy',
         // Semester::class => ClassePolicy::class
+        HistoryWallet::class => ChargePolicy::class
     ];
 
     /**

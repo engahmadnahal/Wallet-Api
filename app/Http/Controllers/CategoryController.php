@@ -10,6 +10,11 @@ use Symfony\Component\HttpFoundation\Response;
 class CategoryController extends Controller
 {
     use CustomTrait;
+
+    public function __construct()
+    {
+        $this->authorizeResource(Category::class);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +22,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
+        $category = Category::where('compony_id',auth()->user()->id)->get();
         return view('category.index',[
             'category' => $category
         ]);
@@ -55,6 +60,7 @@ class CategoryController extends Controller
             $category = new Category;
             $category->name_en = $request->input('name_en');
             $category->name_ar = $request->input('name_ar');
+            $category->compony_id = auth()->user()->id;
             if($request->hasFile('image')){
                 $filePath = $this->uploadFile($request->file('image'));
             }
@@ -124,6 +130,7 @@ class CategoryController extends Controller
 
             $category->name_en = $request->input('name_en');
             $category->name_ar = $request->input('name_ar');
+            $category->compony_id = auth()->user()->id;
             if($request->hasFile('image')){
                 $filePath = $this->uploadFile($request->file('image'));
                 $category->image = $filePath;
