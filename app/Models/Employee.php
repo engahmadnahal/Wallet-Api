@@ -18,4 +18,9 @@ class Employee extends Authenticatable
     public function PayPoint(){
         return $this->belongsTo(PayPoint::class);
     }
+
+    // This Morph Relations , Sender two type {PayPoint , Users}
+    public function senderWalletUsers(){
+        return $this->morphMany(HistoryWallet::class,'object','object_type','object_id','id');
+    }
 }

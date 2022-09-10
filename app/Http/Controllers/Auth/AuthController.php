@@ -42,7 +42,7 @@ class AuthController extends Controller
 
     public function logoutUser(){
         Auth::logout();
-        return redirect()->route('auth.login_page');
+        return redirect()->route('auth.choise_guard');
     }
     
     public function blockAccount(){

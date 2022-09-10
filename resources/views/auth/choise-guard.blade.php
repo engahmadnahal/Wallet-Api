@@ -4,8 +4,8 @@
 <section class=" flexbox-container">
     <div class="row">
 
-        <div class="col-lg-3 col-md-6 col-sm-12">
-            <a href="{{route('auth.login_page','points')}}">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <a href="{{route('auth.login_page','point')}}">
                 <div class="card text-white border-0 box-shadow-0">
                     <div class="coustomCartHigth">
                         <div class="card-img-overlay overflow-hidden overlay-danger coustomCardContent">
@@ -19,7 +19,7 @@
             </a>
         </div>
        
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="col-lg-4 col-md-6 col-sm-12">
             <a href="{{route('auth.login_page','employee')}}">
                 <div class="card text-white border-0 box-shadow-0">
                     <div class="coustomCartHigth">
@@ -33,7 +33,7 @@
                 </div>
             </a>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="col-lg-4 col-md-6 col-sm-12">
             <a href="{{route('auth.login_page','compony')}}">
                 <div class="card">
                     <div class="coustomCartHigth">
@@ -46,7 +46,7 @@
                 </div>
             </a>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        {{-- <div class="col-lg-3 col-md-6 col-sm-12">
             <a href="{{route('auth.login_page','users')}}">
                 <div class="card text-white border-0 box-shadow-0">
                     <div class="coustomCartHigth">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </a>
-        </div>
+        </div> --}}
     </div>
     
 </section>

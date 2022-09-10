@@ -6,15 +6,19 @@ use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\EmailVerifiyController;
 use App\Http\Controllers\Auth\RessetPasswordController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChargeController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PayPointController;
 use App\Http\Controllers\PsychiatristController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\SocialResearcherController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UserController;
+use App\Mail\SendDataPayPointEmail;
+use App\Mail\SendDetailsChargeEmail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,8 +54,8 @@ Route::middleware('Local')->group(function(){
 
     /// -------------------- Auth Routes -------------
 
-    Route::middleware(['auth:users,compony,employee','Block'])->group(function(){
-        // ----- Global Settings Route ---------
+    Route::middleware(['auth:users,compony,employee,point','Block'])->group(function(){
+        // ----- Global  Route ---------
         Route::post('logout', [AuthController::class , 'logoutUser'])->name('auth.logout');
         Route::get('/',[HomeController::class , 'index'])->name('home.index');
         Route::post('/set-local',[HomeController::class , 'setLocal'])->name('set_local');
@@ -61,31 +65,51 @@ Route::middleware('Local')->group(function(){
         Route::get('/notification',[HomeController::class , 'showNotification'])->name('notification');
         Route::post('/notification/read',[HomeController::class , 'readNotification'])->name('read_notification');
         
-        // ----- PayPoints Settings Route ---------
+        // ----- PayPoints  Route ---------
 
         Route::resource('pay_points',PayPointController::class);
 
-        // ----- Users Settings Route ---------
+        // ----- Users  Route ---------
         Route::post('users/status/{user}',[UserController::class , 'changeStatus']);
+        Route::get('users/reports/{user}',[UserController::class , 'showReport'])->name('users.report');
         Route::resource('users',UserController::class);
 
-        // ----- Employees Settings Route ---------
+        // ----- Employees  Route ---------
+        Route::post('employees/status/{employee}',[EmployeeController::class , 'changeStatus']);
+        Route::get('employees/reports/{employee}',[EmployeeController::class , 'showReport'])->name('employees.report');
         Route::resource('employees',EmployeeController::class);
 
-        // ----- City Settings Route ---------
+        // ----- City  Route ---------
         Route::resource('cities',CityController::class);
 
-        // ----- Role Permission Settings Route ---------
+        // ----- Role Permission  Route ---------
         Route::put('/roles/{role}/giv-permission',[RolePermissionController::class , 'givPermissionRole']);
         Route::resource('roles',RolePermissionController::class);
 
-        // ----- Category Settings Route ---------
+        // ----- Category  Route ---------
         Route::post('categories/status/{category}',[CategoryController::class , 'changeStatus']);
         Route::resource('categories',CategoryController::class);
 
-        // ----- Sub Category Settings Route ---------
+        // ----- Sub Category  Route ---------
         Route::post('sub_categories/status/{sub_category}',[SubCategoryController::class , 'changeStatus']);
         Route::resource('sub_categories',SubCategoryController::class);
+
+        // ----- Charge Mony  Route ---------
+        Route::post('/charge/user/info',[ChargeController::class , 'userInfo']);
+        Route::post('/charge/send-code',[ChargeController::class , 'sendCodeVerificationCharge']);
+        Route::resource('charge',ChargeController::class);
+
+        // ----- Reports Route ---------
+        Route::controller(ReportController::class)->group(function(){
+            Route::get('report/paypoint','showPayPoint')->name('report.paypoint');
+            Route::get('report/paypoint/{pay_points}','showReportPayPoint')->name('report.paypoint.show');
+            Route::get('report/user','showUser')->name('report.user');
+            Route::get('report/user/{user}','showReportUser')->name('report.user.show');
+            Route::get('report/subcategory','showSubCategory')->name('report.subcategory');
+            Route::get('report/subcategory/{sub_category}','showReportSubCategory')->name('report.subcategory.show');
+        });
+
+
         
 
 
@@ -100,7 +124,5 @@ Route::middleware('Local')->group(function(){
 
     
 });
-
-
 
 

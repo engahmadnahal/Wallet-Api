@@ -27,15 +27,16 @@
             <li class="navigation-header "><span>{{__('dash.content_manger')}}</span>
                 <li class=" nav-item"><a href="#"><i class="fa-solid fa-money-bill-transfer"></i><span class="menu-title" data-i18n="{{__('dash.charge')}}">{{__('dash.charge')}}</span></a>
                     <ul class="menu-content">
-                        <li class="{{ActiveRoute::isActive('cities.index')}}"><a  href="{{route('cities.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
+                        <li class="{{ActiveRoute::isActive('charge.index')}}"><a  href="{{route('charge.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                         </li>
     
-                        <li class="{{ActiveRoute::isActive('cities.create')}}"><a  href="{{route('cities.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
+                        <li class="{{ActiveRoute::isActive('charge.create')}}"><a  href="{{route('charge.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
                         </li>
                         </li>
                     </ul>
                 </li>
 
+               
                 <li class="nav-item"><a href="#"><i class="fa-solid fa-user"></i><span class="menu-title" data-i18n="{{__('dash.pay_points')}}">{{__('dash.pay_points')}}</span></a>
                     <ul class="menu-content">
                         
@@ -80,7 +81,7 @@
             
 
             {{-- For Pay Points --}}
-            <li class="nav-item"><a href="#"><i class="fa-solid fa-people-group"></i><span class="menu-title" data-i18n="{{__('dash.psychiatrist')}}">{{__('dash.employees')}}</span></a>
+            <li class="nav-item"><a href="#"><i class="fa-solid fa-people-group"></i><span class="menu-title" data-i18n="{{__('dash.employee')}}">{{__('dash.employees')}}</span></a>
                 <ul class="menu-content">
                     
                     <li class="{{ActiveRoute::isActive('employees.index')}}"><a  href="{{route('employees.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
@@ -112,11 +113,15 @@
             <li class="navigation-header "><span>{{__('dash.reports')}}</span>
                 <li class=" nav-item"><a href="#"><i class="fa-solid fa-file-invoice-dollar"></i><span class="menu-title" data-i18n="{{__('dash.reports')}}">{{__('dash.reports')}}</span></a>
                     <ul class="menu-content">
-                        <li class="{{ActiveRoute::isActive('cities.index')}}"><a  href="{{route('cities.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.reports_mony')}}">{{__('dash.reports_mony')}}</span></a>
+                        <li class="{{ActiveRoute::isActive('report.paypoint')}}"><a  href="{{route('report.paypoint')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.reports_pay_points')}}">{{__('dash.reports_pay_points')}}</span></a>
                         </li>
     
-                        <li class="{{ActiveRoute::isActive('cities.create')}}"><a  href="{{route('cities.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.reports_pay_points')}}">{{__('dash.reports_pay_points')}}</span></a>
+                        <li class="{{ActiveRoute::isActive('report.user')}}"><a  href="{{route('report.user')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.reports_user')}}">{{__('dash.reports_user')}}</span></a>
                         </li>
+
+                        <li class="{{ActiveRoute::isActive('report.subcategory')}}"><a  href="{{route('report.subcategory')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.reports_subcategory')}}">{{__('dash.reports_subcategory')}}</span></a>
+                        </li>
+                        
                         </li>
                     </ul>
                 </li>

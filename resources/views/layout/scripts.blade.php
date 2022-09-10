@@ -29,6 +29,8 @@
     <script src="{{asset('app-assets/vendors/js/charts/echarts/echarts.min.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
+    <script src="{{asset('app-assets/js/scripts/pages/invoice.js')}}"></script>
+
 
 
 

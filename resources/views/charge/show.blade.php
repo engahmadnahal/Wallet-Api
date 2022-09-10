@@ -1,8 +1,8 @@
 
 @extends('layout.master')
 
-@section('title',__('dash.show_paypoint'))
-@section('title_page',__('dash.show_paypoint'))
+@section('title',__('dash.level_setting'))
+@section('title_page',__('dash.level_setting'))
 @section('content')
 <section class="page-users-view">
     <div class="row">

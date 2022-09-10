@@ -38,6 +38,7 @@
                                             <td>{{$u->state}}</td>
                                             <td>{{$u->created_at->format('Y-m-d')}}</td>
                                             <td class="action-table">
+                                                <a href="{{route('users.show',$u->id)}}"  class="btn bg-gradient-info   waves-effect waves-light"><i class="fa-solid fa-file-invoice-dollar"></i></i></a>
                                                 @if($u->status =='active')
                                                 {{-- Show block btn where status user active --}}
                                                         <button type="button" class="btn bg-gradient-danger waves-effect waves-light" onclick="performChangeStatus({{$u->id}})"><i class="fa fa-lock"></i></button>

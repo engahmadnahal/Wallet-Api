@@ -49,6 +49,9 @@
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/core/colors/palette-gradient.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/app-user.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css-rtl/core/colors/palette-gradient.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css-rtl/pages/invoice.css')}}">
+
 
     @endif
 
@@ -96,6 +99,8 @@
         <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css-rtl/core/colors/palette-gradient.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css-rtl/pages/app-user.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/core/colors/palette-gradient.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/invoice.css')}}">
     
     
         <!-- BEGIN: Custom CSS For Ar Lang-->
@@ -157,5 +162,10 @@
     height: 100%;
     text-align: center;
     padding: 4px;
+}
+.customTable td{
+    padding-bottom: 20px;
+    padding-left: 31px;
+
 }
     </style>

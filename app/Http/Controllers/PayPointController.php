@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendDataPayPointEmail;
 use App\Models\Compony;
 use App\Models\PayPoint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
 use Str;
@@ -75,7 +77,8 @@ class PayPointController extends Controller
 
             // givRole
             $payPoint->syncRoles(Role::findOrFail($request->input('role_id')));
-
+            //Send Email To Pay Point
+            Mail::to($payPoint)->send(new SendDataPayPointEmail($payPoint,$password));
 
             return response()->json([
                 'title'=> __('msg.success'),

@@ -1,7 +1,7 @@
 @extends('layout.master')
 
-@section('title',__('dash.edit_paypoint'))
-@section('title_page',__('dash.edit_paypoint'))
+@section('title',__('dash.create_employee'))
+@section('title_page',__('dash.create_employee'))
 
 @section('content')
 <section id="multiple-column-form">
@@ -18,47 +18,45 @@
 
                                     <div class="col-md-12 col-12">
                                         <div class="form-label-group">
-                                            <input type="text" id="name_ar" class="form-control" placeholder="{{__('dash.name_ar')}}"  value="{{$payPoint->name_ar}}">
-                                            <label for="name_ar">{{__('dash.name_ar')}}</label>
+                                            <input type="text" id="name" class="form-control" placeholder="{{__('dash.name')}}"  required>
+                                            <label for="name">{{__('dash.name')}}</label>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12 col-12">
                                         <div class="form-label-group">
-                                            <input type="text" id="name_en" class="form-control" placeholder="{{__('dash.name_en')}}"  value="{{$payPoint->name_en}}">
-                                            <label for="name_en">{{__('dash.name_en')}}</label>
+                                            <input type="text" id="national_id" class="form-control" placeholder="{{__('dash.national_id')}}"  required>
+                                            <label for="national_id">{{__('dash.national_id')}}</label>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12 col-12">
                                         <div class="form-label-group">
-                                            <input type="text" id="email" class="form-control" placeholder="{{__('dash.email')}}"  value="{{$payPoint->email}}">
+                                            <input type="text" id="email" class="form-control" placeholder="{{__('dash.email')}}"  required>
                                             <label for="email">{{__('dash.email')}}</label>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12 col-12">
                                         <div class="form-label-group">
-                                            <input type="text" id="mobile" class="form-control" placeholder="{{__('dash.mobile')}}"  value="{{$payPoint->mobile}}">
+                                            <input type="text" id="mobile" class="form-control" placeholder="{{__('dash.mobile')}}"  required>
                                             <label for="mobile">{{__('dash.mobile')}}</label>
                                         </div>
                                     </div>
 
 
-
-
                                     <div class="col-md-12 col-12">
                                         <div class="form-label-group">
-                                            <label for="compony_id">{{__('dash.compony')}}</label>
-
-                                            <select class="select2 form-control select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true" id="compony_id">
-                                                <option value="-1">{{__('dash.compony')}}</option>
-                                                @foreach ($compony as $c)
-                                                    <option value="{{$c->id}}" @selected($c->id == $payPoint->compony_id)>{{$c->name}}</option>
+                                            <label for="city_id">{{__('dash.city')}}</label>
+                                            <select class="select2 form-control select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true" id="city_id">
+                                                <option value="-1">{{__('dash.city')}}</option>
+                                                @foreach ($city as $c)
+                                                    <option value="{{$c->id}}">{{$c->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
+                                    
 
                                     <div class="col-md-12 col-12">
                                         <div class="form-label-group">
@@ -66,15 +64,17 @@
                                             <select class="select2 form-control select2-hidden-accessible" data-select2-id="2" tabindex="-1" aria-hidden="true" id="role_id">
                                                 <option value="-1">{{__('dash.role')}}</option>
                                                 @foreach ($roles as $r)
-                                                    <option value="{{$r->id}}" @selected($payPoint->hasRole($r))>{{$r->name}}</option>
+                                                    <option value="{{$r->id}}">{{$r->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
+
+                                    
                                     
                                    
                                     <div class="col-12">
-                                        <button type="button" class="btn btn-primary mr-1 mb-1 waves-effect waves-light" onclick="performUpdate()">{{__('dash.save')}}</button>
+                                        <button type="button" class="btn btn-primary mr-1 mb-1 waves-effect waves-light" onclick="performStore()">{{__('dash.save')}}</button>
                                         <button type="reset" class="btn btn-outline-warning mr-1 mb-1 waves-effect waves-light">{{__('dash.reset')}}</button>
                                     </div>
                                 </div>
@@ -90,27 +90,24 @@
 
 @section('scripts')
 <script>
-    function performUpdate(){
-        let name_ar = document.getElementById('name_ar').value;
-        let name_en = document.getElementById('name_en').value;
+    function performStore(){
+        let name = document.getElementById('name').value;
+        let national_id = document.getElementById('national_id').value;
         let email = document.getElementById('email').value;
         let mobile = document.getElementById('mobile').value;
-        let compony_id = document.getElementById('compony_id').value;
+        let city_id = document.getElementById('city_id').value;
         let role_id = document.getElementById('role_id').value;
 
         let dataObj = {
-            name_ar : name_ar,
-            name_en : name_en,
+            name : name,
+            national_id : national_id,
             email : email,
             mobile : mobile,
-            compony_id : compony_id,
-            role_id : role_id,
-            _method : 'PUT'
-
+            city_id : city_id,
+            role_id : role_id
         };
 
-  
-        performUpdateWithTostar('/pay_points/{{$payPoint->id}}',dataObj);
+        performStoreWithTostar('/employees',dataObj,'form');
     }
 </script>
 @endsection

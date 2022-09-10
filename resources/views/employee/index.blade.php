@@ -1,7 +1,7 @@
 @extends('layout.master')
 
-@section('title',__('dash.index_paypoint'))
-@section('title_page',__('dash.index_paypoint'))
+@section('title',__('dash.index_employee'))
+@section('title_page',__('dash.index_employee'))
 
 @section('content')
 
@@ -23,24 +23,26 @@
                                         <th>{{__('dash.name')}}</th>
                                         <th>{{__('dash.email')}}</th>
                                         <th>{{__('dash.mobile')}}</th>
-                                        <th>{{__('dash.compony')}}</th>
+                                        <th>{{__('dash.national_id')}}</th>
+                                        <th>{{__('dash.pay_points')}}</th>
                                         <th>{{__('dash.add_date2')}}</th>
                                         <th>{{__('dash.actions')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($pays as $p)
+                                    @foreach ($employee as $e)
                                         <tr>
-                                            <td>{{$p->name}}</td>
-                                            <td>{{$p->email}}</td>
-                                            <td>{{$p->mobile}}</td>
-                                            <td>{{$p->compony->name}}</td>
-                                            <td>{{$p->created_at->format('Y-m-d')}}</td>
+                                            <td>{{$e->name}}</td>
+                                            <td>{{$e->email}}</td>
+                                            <td>{{$e->mobile}}</td>
+                                            <td>{{$e->national_id}}</td>
+                                            <td>{{$e->PayPoint->name}}</td>
+                                            <td>{{$e->created_at->format('Y-m-d')}}</td>
                                             <td class="action-table">
-                                                <a href="{{route('pay_points.edit',$p->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
-                                                <a href="{{route('pay_points.show',$p->id)}}"  class="btn bg-gradient-info   waves-effect waves-light"><i class="fa-solid fa-eye"></i></i></a>
-                                                <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$p->id}})"><i class="fa fa-trash"></i></button>
+                                                <a href="{{route('employees.show',$e->id)}}"  class="btn bg-gradient-info   waves-effect waves-light"><i class="fa-solid fa-file-invoice-dollar"></i></i></a>
+                                                <a href="{{route('employees.edit',$e->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
+                                                <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$e->id}})"><i class="fa fa-trash"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach

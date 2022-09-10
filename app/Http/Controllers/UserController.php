@@ -53,7 +53,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         //
-        return view('user.show',[
+        return view('user.details',[
             'user' => $user
         ]);
     }
@@ -109,5 +109,11 @@ class UserController extends Controller
             'title' => $isSave ? __('msg.success') : __('msg.error'),
             'message' =>$isSave ? __('msg.success_action') : __('msg.error_action')
         ],$isSave ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+    }
+
+    public function showReport(User $user){
+        return view('user.report',[
+            'user' => $user
+        ]);
     }
 }

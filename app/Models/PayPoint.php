@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class PayPoint extends Model
+class PayPoint extends Authenticatable
 {
-    use HasFactory,HasRoles;
+    use HasFactory,HasRoles,Notifiable;
 
     protected $fillable = ['*'];
 
