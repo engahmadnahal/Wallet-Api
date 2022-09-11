@@ -60,7 +60,7 @@
                                 @foreach ($permissions as $pr )
                                 <tr class="tableCustomRow">
                                     <td>{{++$loop->index}}</td>
-                                    <td>{{__('dash.'.$pr->name)}}</td>
+                                    <td>{{$pr->name}}</td>
                                     <td>
                                         <div class="custom-control custom-checkbox ml-50"><input type="checkbox" id="per-{{$pr->id}}" onclick="performGivPermission({{$pr->id}})" class="custom-control-input"  @checked($pr->assign)>
                                             <label class="custom-control-label" for="per-{{$pr->id}}"></label>
