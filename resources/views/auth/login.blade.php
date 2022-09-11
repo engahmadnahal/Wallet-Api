@@ -20,7 +20,8 @@
                         <p class="px-2">{{__('dash.login_text')}}.</p>
                         <div class="card-content">
                             <div class="card-body pt-1">
-                                <form action="index.html">
+                                <form >
+                                    <p class='text-danger' id="errorMsg" style=" width: 70%; "></p>
                                     <fieldset class="form-label-group form-group position-relative has-icon-left">
                                         <input type="email" class="form-control" id="email" placeholder="{{__('dash.email')}}" required>
                                         <div class="form-control-position">
