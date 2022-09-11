@@ -22,7 +22,7 @@ class CategoryController extends Controller
 
     public function allCategory(Request $request)
     {
-        if(!auth()->user()->can('Read-catsegory')){
+        if(!auth()->user()->can('Read-category')){
             return response()->json([
                 'status' => false,
                 'message' => 'unauthorized'
