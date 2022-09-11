@@ -41,6 +41,8 @@ class AuthRegisterUserController extends Controller
             // Create Wallet After Register
             $this->createWalletUser($user);
 
+            $user->givePermissionTo('History-wallet','Send-mony','Read-subcategory','Read-category');
+
             return $this->grantPGCT($request);
         }else{
             return response()->json(
