@@ -87,7 +87,7 @@
         }).then(function(response){
             window.location.href = "{{route('home.index')}}";
         }).catch(function(error){
-            toastr.error(error.response.data.message,error.response.data.title, { "progressBar": true });
+            document.getElementById('errorMsg').innerHTML = error.response.data.message,error;
         });
     }
 
